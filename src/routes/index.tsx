@@ -151,7 +151,7 @@ function TableGrid() {
                   "min-h-28 rounded-2xl border bg-card p-3 text-left",
                   order ? "border-transparent shadow-sm" : "border-border",
                 )}
-                style={order ? { borderLeft: "4px solid var(--st-" + t.status + ")" } : undefined}
+                style={{ borderLeftColor: `var(--st-${t.status})`, borderLeftWidth: order ? 4 : 1 }}
               >
                 <div className="flex items-start justify-between gap-2">
                   <div className="min-w-0">
