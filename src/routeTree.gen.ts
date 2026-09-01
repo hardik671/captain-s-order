@@ -10,33 +10,167 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as ReservationsRouteImport } from './routes/reservations'
+import { Route as StatusRouteImport } from './routes/status'
+import { Route as TakeawayRouteImport } from './routes/takeaway'
+import { Route as BillOrderIdRouteImport } from './routes/bill.$orderId'
+import { Route as OrderOrderIdRouteImport } from './routes/order.$orderId'
+import { Route as OrdersIndexRouteImport } from './routes/orders.index'
+import { Route as StartOrderTableIdRouteImport } from './routes/start-order.$tableId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReservationsRoute = ReservationsRouteImport.update({
+  id: '/reservations',
+  path: '/reservations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StatusRoute = StatusRouteImport.update({
+  id: '/status',
+  path: '/status',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TakeawayRoute = TakeawayRouteImport.update({
+  id: '/takeaway',
+  path: '/takeaway',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BillOrderIdRoute = BillOrderIdRouteImport.update({
+  id: '/bill/$orderId',
+  path: '/bill/$orderId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrderOrderIdRoute = OrderOrderIdRouteImport.update({
+  id: '/order/$orderId',
+  path: '/order/$orderId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrdersIndexRoute = OrdersIndexRouteImport.update({
+  id: '/orders/',
+  path: '/orders/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StartOrderTableIdRoute = StartOrderTableIdRouteImport.update({
+  id: '/start-order/$tableId',
+  path: '/start-order/$tableId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/notifications': typeof NotificationsRoute
+  '/profile': typeof ProfileRoute
+  '/reservations': typeof ReservationsRoute
+  '/status': typeof StatusRoute
+  '/takeaway': typeof TakeawayRoute
+  '/bill/$orderId': typeof BillOrderIdRoute
+  '/order/$orderId': typeof OrderOrderIdRoute
+  '/start-order/$tableId': typeof StartOrderTableIdRoute
+  '/orders/': typeof OrdersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/notifications': typeof NotificationsRoute
+  '/profile': typeof ProfileRoute
+  '/reservations': typeof ReservationsRoute
+  '/status': typeof StatusRoute
+  '/takeaway': typeof TakeawayRoute
+  '/bill/$orderId': typeof BillOrderIdRoute
+  '/order/$orderId': typeof OrderOrderIdRoute
+  '/start-order/$tableId': typeof StartOrderTableIdRoute
+  '/orders': typeof OrdersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/notifications': typeof NotificationsRoute
+  '/profile': typeof ProfileRoute
+  '/reservations': typeof ReservationsRoute
+  '/status': typeof StatusRoute
+  '/takeaway': typeof TakeawayRoute
+  '/bill/$orderId': typeof BillOrderIdRoute
+  '/order/$orderId': typeof OrderOrderIdRoute
+  '/start-order/$tableId': typeof StartOrderTableIdRoute
+  '/orders/': typeof OrdersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/notifications'
+    | '/profile'
+    | '/reservations'
+    | '/status'
+    | '/takeaway'
+    | '/bill/$orderId'
+    | '/order/$orderId'
+    | '/start-order/$tableId'
+    | '/orders/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/login'
+    | '/notifications'
+    | '/profile'
+    | '/reservations'
+    | '/status'
+    | '/takeaway'
+    | '/bill/$orderId'
+    | '/order/$orderId'
+    | '/start-order/$tableId'
+    | '/orders'
+  id:
+    | '__root__'
+    | '/'
+    | '/login'
+    | '/notifications'
+    | '/profile'
+    | '/reservations'
+    | '/status'
+    | '/takeaway'
+    | '/bill/$orderId'
+    | '/order/$orderId'
+    | '/start-order/$tableId'
+    | '/orders/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LoginRoute: typeof LoginRoute
+  NotificationsRoute: typeof NotificationsRoute
+  ProfileRoute: typeof ProfileRoute
+  ReservationsRoute: typeof ReservationsRoute
+  StatusRoute: typeof StatusRoute
+  TakeawayRoute: typeof TakeawayRoute
+  BillOrderIdRoute: typeof BillOrderIdRoute
+  OrderOrderIdRoute: typeof OrderOrderIdRoute
+  StartOrderTableIdRoute: typeof StartOrderTableIdRoute
+  OrdersIndexRoute: typeof OrdersIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +182,91 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reservations': {
+      id: '/reservations'
+      path: '/reservations'
+      fullPath: '/reservations'
+      preLoaderRoute: typeof ReservationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/status': {
+      id: '/status'
+      path: '/status'
+      fullPath: '/status'
+      preLoaderRoute: typeof StatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/takeaway': {
+      id: '/takeaway'
+      path: '/takeaway'
+      fullPath: '/takeaway'
+      preLoaderRoute: typeof TakeawayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bill/$orderId': {
+      id: '/bill/$orderId'
+      path: '/bill/$orderId'
+      fullPath: '/bill/$orderId'
+      preLoaderRoute: typeof BillOrderIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/order/$orderId': {
+      id: '/order/$orderId'
+      path: '/order/$orderId'
+      fullPath: '/order/$orderId'
+      preLoaderRoute: typeof OrderOrderIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/orders/': {
+      id: '/orders/'
+      path: '/orders'
+      fullPath: '/orders/'
+      preLoaderRoute: typeof OrdersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/start-order/$tableId': {
+      id: '/start-order/$tableId'
+      path: '/start-order/$tableId'
+      fullPath: '/start-order/$tableId'
+      preLoaderRoute: typeof StartOrderTableIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LoginRoute: LoginRoute,
+  NotificationsRoute: NotificationsRoute,
+  ProfileRoute: ProfileRoute,
+  ReservationsRoute: ReservationsRoute,
+  StatusRoute: StatusRoute,
+  TakeawayRoute: TakeawayRoute,
+  BillOrderIdRoute: BillOrderIdRoute,
+  OrderOrderIdRoute: OrderOrderIdRoute,
+  StartOrderTableIdRoute: StartOrderTableIdRoute,
+  OrdersIndexRoute: OrdersIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
