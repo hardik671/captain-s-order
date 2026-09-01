@@ -12,9 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as ReservationsRouteImport } from './routes/reservations'
 import { Route as StatusRouteImport } from './routes/status'
 import { Route as TakeawayRouteImport } from './routes/takeaway'
+import { Route as BillOrderIdRouteImport } from './routes/bill.$orderId'
 import { Route as OrderOrderIdRouteImport } from './routes/order.$orderId'
 import { Route as OrdersIndexRouteImport } from './routes/orders.index'
 import { Route as StartOrderTableIdRouteImport } from './routes/start-order.$tableId'
@@ -34,6 +36,11 @@ const NotificationsRoute = NotificationsRouteImport.update({
   path: '/notifications',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReservationsRoute = ReservationsRouteImport.update({
   id: '/reservations',
   path: '/reservations',
@@ -47,6 +54,11 @@ const StatusRoute = StatusRouteImport.update({
 const TakeawayRoute = TakeawayRouteImport.update({
   id: '/takeaway',
   path: '/takeaway',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BillOrderIdRoute = BillOrderIdRouteImport.update({
+  id: '/bill/$orderId',
+  path: '/bill/$orderId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OrderOrderIdRoute = OrderOrderIdRouteImport.update({
@@ -69,9 +81,11 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/notifications': typeof NotificationsRoute
+  '/profile': typeof ProfileRoute
   '/reservations': typeof ReservationsRoute
   '/status': typeof StatusRoute
   '/takeaway': typeof TakeawayRoute
+  '/bill/$orderId': typeof BillOrderIdRoute
   '/order/$orderId': typeof OrderOrderIdRoute
   '/start-order/$tableId': typeof StartOrderTableIdRoute
   '/orders/': typeof OrdersIndexRoute
@@ -80,9 +94,11 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/notifications': typeof NotificationsRoute
+  '/profile': typeof ProfileRoute
   '/reservations': typeof ReservationsRoute
   '/status': typeof StatusRoute
   '/takeaway': typeof TakeawayRoute
+  '/bill/$orderId': typeof BillOrderIdRoute
   '/order/$orderId': typeof OrderOrderIdRoute
   '/start-order/$tableId': typeof StartOrderTableIdRoute
   '/orders': typeof OrdersIndexRoute
@@ -92,9 +108,11 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/notifications': typeof NotificationsRoute
+  '/profile': typeof ProfileRoute
   '/reservations': typeof ReservationsRoute
   '/status': typeof StatusRoute
   '/takeaway': typeof TakeawayRoute
+  '/bill/$orderId': typeof BillOrderIdRoute
   '/order/$orderId': typeof OrderOrderIdRoute
   '/start-order/$tableId': typeof StartOrderTableIdRoute
   '/orders/': typeof OrdersIndexRoute
@@ -105,9 +123,11 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/notifications'
+    | '/profile'
     | '/reservations'
     | '/status'
     | '/takeaway'
+    | '/bill/$orderId'
     | '/order/$orderId'
     | '/start-order/$tableId'
     | '/orders/'
@@ -116,9 +136,11 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/notifications'
+    | '/profile'
     | '/reservations'
     | '/status'
     | '/takeaway'
+    | '/bill/$orderId'
     | '/order/$orderId'
     | '/start-order/$tableId'
     | '/orders'
@@ -127,9 +149,11 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/notifications'
+    | '/profile'
     | '/reservations'
     | '/status'
     | '/takeaway'
+    | '/bill/$orderId'
     | '/order/$orderId'
     | '/start-order/$tableId'
     | '/orders/'
@@ -139,9 +163,11 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LoginRoute: typeof LoginRoute
   NotificationsRoute: typeof NotificationsRoute
+  ProfileRoute: typeof ProfileRoute
   ReservationsRoute: typeof ReservationsRoute
   StatusRoute: typeof StatusRoute
   TakeawayRoute: typeof TakeawayRoute
+  BillOrderIdRoute: typeof BillOrderIdRoute
   OrderOrderIdRoute: typeof OrderOrderIdRoute
   StartOrderTableIdRoute: typeof StartOrderTableIdRoute
   OrdersIndexRoute: typeof OrdersIndexRoute
@@ -170,6 +196,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NotificationsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reservations': {
       id: '/reservations'
       path: '/reservations'
@@ -189,6 +222,13 @@ declare module '@tanstack/react-router' {
       path: '/takeaway'
       fullPath: '/takeaway'
       preLoaderRoute: typeof TakeawayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bill/$orderId': {
+      id: '/bill/$orderId'
+      path: '/bill/$orderId'
+      fullPath: '/bill/$orderId'
+      preLoaderRoute: typeof BillOrderIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/order/$orderId': {
@@ -219,9 +259,11 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LoginRoute: LoginRoute,
   NotificationsRoute: NotificationsRoute,
+  ProfileRoute: ProfileRoute,
   ReservationsRoute: ReservationsRoute,
   StatusRoute: StatusRoute,
   TakeawayRoute: TakeawayRoute,
+  BillOrderIdRoute: BillOrderIdRoute,
   OrderOrderIdRoute: OrderOrderIdRoute,
   StartOrderTableIdRoute: StartOrderTableIdRoute,
   OrdersIndexRoute: OrdersIndexRoute,
