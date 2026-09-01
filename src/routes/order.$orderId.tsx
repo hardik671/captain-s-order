@@ -44,7 +44,8 @@ export const Route = createFileRoute("/order/$orderId")({
 
 function OrderMenu() {
   const { orderId } = Route.useParams();
-  const { orderById, tableById, menu, categories, addLine, fireKot, holdOrder, blocked } = useCaptain();
+  const { orderById, tableById, menu, categories, addLine, updateLineQty, fireKot, holdOrder, blocked } =
+    useCaptain();
   const navigate = useNavigate();
   const order = orderById(orderId);
   const [categoryId, setCategoryId] = useState(categories[0]!.id);
@@ -233,11 +234,10 @@ function OrderMenu() {
                     value={qty}
                     onChange={(q) => {
                       const line = roundLines.find((l) => l.itemId === item.id);
-                      if (line) {
-                        if (q > qty) addLine(order.id, { itemId: item.id, qty: 1, unitPrice: item.price, addons: [] });
-                        else
-                          useCaptainUpdate(order.id, line.id, q);
-                      }
+                      if (!line) return;
+                      if (q > qty)
+                        addLine(order.id, { itemId: item.id, qty: 1, unitPrice: item.price, addons: [] });
+                      else updateLineQty(order.id, line.id, q);
                     }}
                   />
                 ) : (
@@ -330,9 +330,4 @@ function OrderMenu() {
       ) : null}
     </AppShell>
   );
-}
-
-function useCaptainUpdate(orderId: string, lineId: string, qty: number) {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  return undefined;
 }
