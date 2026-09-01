@@ -11,8 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as ReservationsRouteImport } from './routes/reservations'
+import { Route as StatusRouteImport } from './routes/status'
 import { Route as TakeawayRouteImport } from './routes/takeaway'
 import { Route as OrderOrderIdRouteImport } from './routes/order.$orderId'
+import { Route as OrdersIndexRouteImport } from './routes/orders.index'
 import { Route as StartOrderTableIdRouteImport } from './routes/start-order.$tableId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -25,6 +29,21 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReservationsRoute = ReservationsRouteImport.update({
+  id: '/reservations',
+  path: '/reservations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StatusRoute = StatusRouteImport.update({
+  id: '/status',
+  path: '/status',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TakeawayRoute = TakeawayRouteImport.update({
   id: '/takeaway',
   path: '/takeaway',
@@ -33,6 +52,11 @@ const TakeawayRoute = TakeawayRouteImport.update({
 const OrderOrderIdRoute = OrderOrderIdRouteImport.update({
   id: '/order/$orderId',
   path: '/order/$orderId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrdersIndexRoute = OrdersIndexRouteImport.update({
+  id: '/orders/',
+  path: '/orders/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const StartOrderTableIdRoute = StartOrderTableIdRouteImport.update({
@@ -44,46 +68,83 @@ const StartOrderTableIdRoute = StartOrderTableIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/notifications': typeof NotificationsRoute
+  '/reservations': typeof ReservationsRoute
+  '/status': typeof StatusRoute
   '/takeaway': typeof TakeawayRoute
   '/order/$orderId': typeof OrderOrderIdRoute
   '/start-order/$tableId': typeof StartOrderTableIdRoute
+  '/orders/': typeof OrdersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/notifications': typeof NotificationsRoute
+  '/reservations': typeof ReservationsRoute
+  '/status': typeof StatusRoute
   '/takeaway': typeof TakeawayRoute
   '/order/$orderId': typeof OrderOrderIdRoute
   '/start-order/$tableId': typeof StartOrderTableIdRoute
+  '/orders': typeof OrdersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/notifications': typeof NotificationsRoute
+  '/reservations': typeof ReservationsRoute
+  '/status': typeof StatusRoute
   '/takeaway': typeof TakeawayRoute
   '/order/$orderId': typeof OrderOrderIdRoute
   '/start-order/$tableId': typeof StartOrderTableIdRoute
+  '/orders/': typeof OrdersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/login' | '/takeaway' | '/order/$orderId' | '/start-order/$tableId'
+    | '/'
+    | '/login'
+    | '/notifications'
+    | '/reservations'
+    | '/status'
+    | '/takeaway'
+    | '/order/$orderId'
+    | '/start-order/$tableId'
+    | '/orders/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/takeaway' | '/order/$orderId' | '/start-order/$tableId'
+  to:
+    | '/'
+    | '/login'
+    | '/notifications'
+    | '/reservations'
+    | '/status'
+    | '/takeaway'
+    | '/order/$orderId'
+    | '/start-order/$tableId'
+    | '/orders'
   id:
     | '__root__'
     | '/'
     | '/login'
+    | '/notifications'
+    | '/reservations'
+    | '/status'
     | '/takeaway'
     | '/order/$orderId'
     | '/start-order/$tableId'
+    | '/orders/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LoginRoute: typeof LoginRoute
+  NotificationsRoute: typeof NotificationsRoute
+  ReservationsRoute: typeof ReservationsRoute
+  StatusRoute: typeof StatusRoute
   TakeawayRoute: typeof TakeawayRoute
   OrderOrderIdRoute: typeof OrderOrderIdRoute
   StartOrderTableIdRoute: typeof StartOrderTableIdRoute
+  OrdersIndexRoute: typeof OrdersIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -102,6 +163,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reservations': {
+      id: '/reservations'
+      path: '/reservations'
+      fullPath: '/reservations'
+      preLoaderRoute: typeof ReservationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/status': {
+      id: '/status'
+      path: '/status'
+      fullPath: '/status'
+      preLoaderRoute: typeof StatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/takeaway': {
       id: '/takeaway'
       path: '/takeaway'
@@ -114,6 +196,13 @@ declare module '@tanstack/react-router' {
       path: '/order/$orderId'
       fullPath: '/order/$orderId'
       preLoaderRoute: typeof OrderOrderIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/orders/': {
+      id: '/orders/'
+      path: '/orders'
+      fullPath: '/orders/'
+      preLoaderRoute: typeof OrdersIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/start-order/$tableId': {
@@ -129,9 +218,13 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LoginRoute: LoginRoute,
+  NotificationsRoute: NotificationsRoute,
+  ReservationsRoute: ReservationsRoute,
+  StatusRoute: StatusRoute,
   TakeawayRoute: TakeawayRoute,
   OrderOrderIdRoute: OrderOrderIdRoute,
   StartOrderTableIdRoute: StartOrderTableIdRoute,
+  OrdersIndexRoute: OrdersIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
