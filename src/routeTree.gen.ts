@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as TakeawayRouteImport } from './routes/takeaway'
+import { Route as OrderOrderIdRouteImport } from './routes/order.$orderId'
 import { Route as StartOrderTableIdRouteImport } from './routes/start-order.$tableId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -29,6 +30,11 @@ const TakeawayRoute = TakeawayRouteImport.update({
   path: '/takeaway',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OrderOrderIdRoute = OrderOrderIdRouteImport.update({
+  id: '/order/$orderId',
+  path: '/order/$orderId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StartOrderTableIdRoute = StartOrderTableIdRouteImport.update({
   id: '/start-order/$tableId',
   path: '/start-order/$tableId',
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/takeaway': typeof TakeawayRoute
+  '/order/$orderId': typeof OrderOrderIdRoute
   '/start-order/$tableId': typeof StartOrderTableIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/takeaway': typeof TakeawayRoute
+  '/order/$orderId': typeof OrderOrderIdRoute
   '/start-order/$tableId': typeof StartOrderTableIdRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,29 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/takeaway': typeof TakeawayRoute
+  '/order/$orderId': typeof OrderOrderIdRoute
   '/start-order/$tableId': typeof StartOrderTableIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/takeaway' | '/start-order/$tableId'
+  fullPaths:
+    '/' | '/login' | '/takeaway' | '/order/$orderId' | '/start-order/$tableId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/takeaway' | '/start-order/$tableId'
-  id: '__root__' | '/' | '/login' | '/takeaway' | '/start-order/$tableId'
+  to: '/' | '/login' | '/takeaway' | '/order/$orderId' | '/start-order/$tableId'
+  id:
+    | '__root__'
+    | '/'
+    | '/login'
+    | '/takeaway'
+    | '/order/$orderId'
+    | '/start-order/$tableId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LoginRoute: typeof LoginRoute
   TakeawayRoute: typeof TakeawayRoute
+  OrderOrderIdRoute: typeof OrderOrderIdRoute
   StartOrderTableIdRoute: typeof StartOrderTableIdRoute
 }
 
@@ -92,6 +109,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TakeawayRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/order/$orderId': {
+      id: '/order/$orderId'
+      path: '/order/$orderId'
+      fullPath: '/order/$orderId'
+      preLoaderRoute: typeof OrderOrderIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/start-order/$tableId': {
       id: '/start-order/$tableId'
       path: '/start-order/$tableId'
@@ -106,6 +130,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LoginRoute: LoginRoute,
   TakeawayRoute: TakeawayRoute,
+  OrderOrderIdRoute: OrderOrderIdRoute,
   StartOrderTableIdRoute: StartOrderTableIdRoute,
 }
 export const routeTree = rootRouteImport
