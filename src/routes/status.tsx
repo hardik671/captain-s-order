@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 import { Soup } from "lucide-react";
 import { AppShell, ScreenHeader } from "@/components/captain/AppShell";
 import { Chip, ChipRow } from "@/components/captain/Chip";
-import { KotBadge } from "@/components/captain/StatusBadge";
+import { StatusBadge } from "@/components/captain/StatusBadge";
 import { EmptyState } from "@/components/captain/States";
 import { elapsed } from "@/lib/captain/format";
 import { useCaptain } from "@/lib/captain/store";
@@ -90,7 +90,7 @@ function StatusScreen() {
                       Round {round.no} · fired {elapsed(round.firedAt!)} ago · {round.stations.join(", ")}
                     </p>
                   </div>
-                  <KotBadge status={round.status} />
+                  <StatusBadge kind="kot" status={round.status} />
                 </div>
                 <ul className="mt-3 space-y-1 border-t border-border pt-3">
                   {round.lines.map((l) => (

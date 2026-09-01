@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CalendarClock, Phone, Users } from "lucide-react";
 import { AppShell, ScreenHeader } from "@/components/captain/AppShell";
 import { EmptyState } from "@/components/captain/States";
-import { timeOf, todayLabel } from "@/lib/captain/format";
+import { timeOf } from "@/lib/captain/format";
 import { useCaptain } from "@/lib/captain/store";
 
 export const Route = createFileRoute("/reservations")({
@@ -26,7 +26,7 @@ function Reservations() {
   return (
     <AppShell
       header={
-        <ScreenHeader title="Today's bookings" subtitle={`${todayLabel()} · managed on Web POS`} />
+        <ScreenHeader title="Today's bookings" subtitle="Synced from Web POS" />
       }
     >
       <p className="rounded-2xl border border-border bg-secondary px-4 py-3 text-xs text-muted-foreground">
