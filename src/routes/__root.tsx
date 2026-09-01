@@ -9,7 +9,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -129,20 +129,20 @@ function RootShell({ children }: { children: ReactNode }) {
 }
 
 function AuthGate({ children }: { children: ReactNode }) {
-  const { captain } = useCaptain();
+  const { captain, restored } = useCaptain();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const navigate = useNavigate();
-  const [ready, setReady] = useState(false);
-
   useEffect(() => {
-    setReady(true);
-  }, []);
-
-  useEffect(() => {
-    if (ready && !captain && pathname !== "/login") {
+    if (!restored) return;
+    if (!captain && pathname !== "/login") {
       navigate({ to: "/login", replace: true });
     }
-  }, [ready, captain, pathname, navigate]);
+    if (captain && pathname === "/login") {
+      navigate({ to: "/", replace: true });
+    }
+  }, [restored, captain, pathname, navigate]);
+
+  if (restored && !captain && pathname !== "/login") return null;
 
   return <>{children}</>;
 }
