@@ -35,6 +35,7 @@ export type NewLineInput = {
 
 type State = {
   captain: Captain | null;
+  restored: boolean;
   connection: ConnectionState;
   tables: RestaurantTable[];
   orders: Order[];
@@ -89,6 +90,7 @@ const statusForOrder = (order: Order): TableStatus => {
 export function CaptainProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<State>({
     captain: null,
+    restored: false,
     connection: "online",
     tables: seedTables,
     orders: seedOrders,
@@ -99,8 +101,12 @@ export function CaptainProvider({ children }: { children: ReactNode }) {
     const raw = typeof window !== "undefined" ? window.localStorage.getItem(SESSION_KEY) : null;
     if (raw) {
       const found = captains.find((c) => c.id === raw);
-      if (found) setState((s) => ({ ...s, captain: found }));
+      if (found) {
+        setState((s) => ({ ...s, captain: found, restored: true }));
+        return;
+      }
     }
+    setState((s) => ({ ...s, restored: true }));
   }, []);
 
   const patch = useCallback((fn: (s: State) => State) => setState(fn), []);
