@@ -65,7 +65,7 @@ function BillPreview() {
         <div className="text-center">
           <p className="font-bold">{outlet.name}</p>
           <p className="text-xs text-muted-foreground">
-            {outlet.address} · GSTIN {outlet.gstin}
+            {outlet.outlet} · {outlet.deviceName}
           </p>
           <p className="mt-1 text-xs text-muted-foreground">
             {label} · opened {timeOf(order.openedAt)} · {order.guests} guests
