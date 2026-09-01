@@ -142,6 +142,8 @@ function AuthGate({ children }: { children: ReactNode }) {
     }
   }, [restored, captain, pathname, navigate]);
 
+  if (restored && !captain && pathname !== "/login") return null;
+
   return <>{children}</>;
 }
 
