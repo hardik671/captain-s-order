@@ -74,8 +74,7 @@ export function TableActionsSheet({
                     key={t.id}
                     type="button"
                     onClick={() => {
-                      const src = orderForTable(t.id)!;
-                      if (mergeTables(order.id, src.id ? t.id : t.id)) {
+                      if (mergeTables(order.id, t.id)) {
                         toast.success(`Table ${t.name} merged into this order`);
                         close();
                       }
